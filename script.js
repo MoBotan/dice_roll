@@ -1,5 +1,8 @@
-const cube = document.getElementById("cube");
-const button = document.querySelector("button");
+const container = document.querySelector("#container");
+const dice = document.querySelectorAll(".die");
+const rollBtn = document.querySelector("#roll");
+const addBtn = document.querySelector("#add");
+const template = document.querySelector("template");
 let coordinates = { x: 0, y: 0, z: 0 };
 const numbers = [
   [90, 0], //  1
@@ -10,13 +13,21 @@ const numbers = [
   [0, 0], //   6
 ];
 
-button.onclick = () => {
-  const randomNumber = Math.floor(Math.random() * 6); // number between 0-6
-  roll(numbers[randomNumber]);
+// Roll all dice when 'roll' button is clicked
+rollBtn.onclick = () => {
+  dice.forEach((die) => {
+    const [x, y] = numbers[randomNumber()];
+    roll(die, x, y);
+  });
 };
 
-function roll([x, y]) {
-  cube.animate(
+// Add a new die when 'add' button is clicked
+addBtn.onclick = () => {
+  const die = template.content.cloneNode(true);
+};
+
+function roll(die, x, y) {
+  die.animate(
     [
       { transform: "rotateX(0deg) rotateY(0deg)" },
       { transform: "rotateX(360deg) rotateY(360deg)" },
@@ -28,4 +39,9 @@ function roll([x, y]) {
       fill: "forwards",
     }
   );
+}
+
+// Generate a random number between 0-5
+function randomNumber() {
+  return Math.floor(Math.random() * 6);
 }

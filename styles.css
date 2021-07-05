@@ -1,19 +1,27 @@
-#container {
-  width: 200px;
-  height: 200px;
-  background-color: hsl(0, 0%, 90%);
-  position: relative;
+body {
+  margin: 0;
+  padding: 0;
 }
 
-#cube {
-  position: absolute;
-  top: 50px;
-  left: 50px;
+#container {
+  min-width: 100%;
+  min-height: 200px;
+  background-color: hsl(0, 0%, 90%);
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 150px);
+  justify-items: center;
+  align-items: center;
+}
+
+.die {
+  width: 100px;
+  height: 100px;
   transform-style: preserve-3d;
   transform-origin: 50px 50px;
 }
 
-#cube div {
+.die div {
   position: absolute;
   width: 100px;
   height: 100px;
@@ -21,32 +29,32 @@
   background-size: cover;
 }
 
-#side-1 {
+.side-1 {
   transform: translateZ(50px);
   background-image: url("images/6.svg");
 }
 
-#side-2 {
+.side-2 {
   transform: translateZ(-50px);
   background-image: url("images/5.svg");
 }
 
-#side-3 {
+.side-3 {
   transform: rotateY(90deg) translateZ(-50px);
   background-image: url("images/4.svg");
 }
 
-#side-4 {
+.side-4 {
   transform: rotateY(90deg) translateZ(50px);
   background-image: url("images/3.svg");
 }
 
-#side-5 {
+.side-5 {
   transform: rotateX(90deg) translateZ(50px);
   background-image: url("images/2.svg");
 }
 
-#side-6 {
+.side-6 {
   transform: rotateX(90deg) translateZ(-50px);
   background-image: url("images/1.svg");
 }
