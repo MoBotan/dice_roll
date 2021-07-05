@@ -1,8 +1,9 @@
 const container = document.querySelector("#container");
-const dice = document.querySelectorAll(".die");
 const rollBtn = document.querySelector("#roll");
 const addBtn = document.querySelector("#add");
+const removeBtn = document.querySelector("#remove");
 const template = document.querySelector("template");
+const total = document.querySelector("#total");
 let coordinates = { x: 0, y: 0, z: 0 };
 const numbers = [
   [90, 0], //  1
@@ -14,18 +15,36 @@ const numbers = [
 ];
 
 // Roll all dice when 'roll' button is clicked
+// Calculate sum of all dice rolls and display
 rollBtn.onclick = () => {
+  const dice = document.querySelectorAll(".die");
+  let sumAllDie = 0;
+
   dice.forEach((die) => {
-    const [x, y] = numbers[randomNumber()];
+    const randomNumber = Math.floor(Math.random() * 6); // number between 0-5
+    const [x, y] = numbers[randomNumber];
     roll(die, x, y);
+    sumAllDie += randomNumber + 1;
   });
+
+  total.textContent = sumAllDie;
 };
 
 // Add a new die when 'add' button is clicked
 addBtn.onclick = () => {
   const die = template.content.cloneNode(true);
+  container.append(die);
 };
 
+// Remove last die when 'remove' button clicked
+removeBtn.onclick = () => {
+  const die = container.querySelector(".die");
+  if (die) {
+    container.removeChild(die);
+  }
+};
+
+// Animate a from 0deg to 360deg to the final die face
 function roll(die, x, y) {
   die.animate(
     [
@@ -39,9 +58,4 @@ function roll(die, x, y) {
       fill: "forwards",
     }
   );
-}
-
-// Generate a random number between 0-5
-function randomNumber() {
-  return Math.floor(Math.random() * 6);
 }
