@@ -2,14 +2,19 @@ body {
   margin: 0;
   padding: 0;
 }
+* {
+  box-sizing: border-box;
+}
 
 #container {
-  min-width: 100%;
+  width: 100vw;
   min-height: 200px;
+  padding: 2em;
   background-color: hsl(0, 0%, 90%);
   position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 150px);
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-gap: 4em;
   justify-items: center;
   align-items: center;
 }
@@ -57,4 +62,18 @@ body {
 .side-6 {
   transform: rotateX(90deg) translateZ(-50px);
   background-image: url("images/1.svg");
+}
+
+#buttons {
+  width: 100%;
+  margin: 8px;
+  text-align: center;
+}
+
+button {
+  margin: 5px;
+  padding: 1em;
+  border: 1px solid;
+  border-radius: 2px;
+  background-color: hsl(100, 80%, 70%);
 }
